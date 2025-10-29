@@ -21,14 +21,14 @@ def agendar_cita():
         # Verificar existencia
         cursor.execute("SELECT COUNT(*) FROM Pacientes WHERE id_paciente = ?", (id_paciente,))
         result = cursor.fetchone()
-        if result is None or result[0] == 0:
+        if not result or result[0] == 0:
             print(f"⚠️ No existe un paciente con ID {id_paciente}.")
             return
+
         cursor.execute("SELECT COUNT(*) FROM Doctores WHERE id_doctor = ?", (id_doctor,))
         result = cursor.fetchone()
-        if result is None or result[0] == 0:
+        if not result or result[0] == 0:
             print(f"⚠️ No existe un doctor con ID {id_doctor}.")
-            return
             return
 
         cursor.execute("""
